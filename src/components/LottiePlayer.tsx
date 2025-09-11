@@ -43,6 +43,21 @@ const LottiePlayer = ({
         // Set inline styles
         player.style.width = '100%';
         player.style.height = '100%';
+        player.style.minHeight = '250px';
+        player.style.display = 'block';
+        
+        // Apply any custom styles passed as props
+        if (style) {
+            Object.entries(style).forEach(([key, value]) => {
+                if (value) {
+                    // Use the CSSStyleDeclaration properly
+                    player.style.setProperty(
+                        key.replace(/([A-Z])/g, '-$1').toLowerCase(),
+                        value.toString()
+                    );
+                }
+            });
+        }
 
         // Clear container and append player
         container.innerHTML = '';
@@ -54,7 +69,7 @@ const LottiePlayer = ({
                 container.removeChild(player);
             }
         };
-    }, [src, loop, autoplay, speed, background]);
+    }, [src, loop, autoplay, speed, background, style]);
 
     return <div ref={containerRef} className={className} style={style} />;
 };

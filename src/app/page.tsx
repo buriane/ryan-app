@@ -10,12 +10,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-blue-600 text-white rounded-xl overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 opacity-90"></div>
-        <div className="relative container mx-auto px-6 py-16 flex flex-col md:flex-row items-center">
+        <div className="relative container mx-auto px-4 sm:px-6 py-12 md:py-16 flex flex-col md:flex-row items-center">
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="md:w-1/2 mb-8 md:mb-0 md:pr-8"
+            className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8"
           >
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -55,20 +55,20 @@ export default function Home() {
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="md:w-1/2 flex justify-center"
+            className="w-full md:w-1/2 flex justify-center"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="w-full max-w-md h-64 md:h-80 relative"
+              className="w-full h-64 sm:h-72 md:h-80 relative mx-4 sm:mx-0 sm:max-w-md"
             >
               <div className="absolute inset-0 bg-white rounded-lg shadow-xl overflow-hidden">
-                {/* Placeholder for a medical/doctor image */}
+                {/* Medical animation */}
                 <div className="h-full w-full bg-white flex items-center justify-center">
                   <LottiePlayer
                     src="https://assets3.lottiefiles.com/packages/lf20_QU0V6MuXdA.json"
-                    style={{ width: '100%', height: '100%' }}
+                    style={{ width: '100%', height: '100%', minHeight: '250px' }}
                     background="transparent"
                     speed="1"
                     loop

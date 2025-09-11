@@ -11,7 +11,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="mt-16 border-t-2 lg:rounded-lg border-blue-200 bg-blue-600 lg:m-4 pt-12 pb-20"
+            className="mt-16 border-t-2 rounded-lg border-blue-200 bg-blue-600 m-4 pt-12 pb-20"
         >
             <motion.div
                 initial={{ opacity: 0 }}
