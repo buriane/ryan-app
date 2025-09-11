@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useAppContext } from '@/context/AppContext';
 import FormDaftar from '@/components/FormDaftar';
@@ -8,7 +8,8 @@ import ModalKonfirmasi from '@/components/ModalKonfirmasi';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-export default function DaftarPage() {
+// SearchParamsContent component that uses the useSearchParams hook
+function SearchParamsContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const { successMessage, setSuccessMessage, errorMessage, lastPendaftaran } = useAppContext();
@@ -121,5 +122,22 @@ export default function DaftarPage() {
 
             {showModal && <ModalKonfirmasi isOpen={showModal} onClose={handleCloseModal} />}
         </motion.div>
+    );
+}
+
+// Main component with Suspense boundary
+export default function DaftarPage() {
+    return (
+        <Suspense fallback={
+            <div className="max-w-4xl mx-auto text-center py-16">
+                <div className="animate-pulse">
+                    <div className="h-8 bg-gray-200 rounded mb-4 w-1/2 mx-auto"></div>
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-6 mx-auto"></div>
+                    <div className="h-32 bg-gray-200 rounded mb-4"></div>
+                </div>
+            </div>
+        }>
+            <SearchParamsContent />
+        </Suspense>
     );
 }

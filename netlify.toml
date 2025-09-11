@@ -1,0 +1,17 @@
+[build]
+  command = "npm run export"
+  publish = "out"
+
+# Static export doesn't need the Next.js plugin
+
+# Handle 404 errors
+[[redirects]]
+  from = "/*"
+  to = "/_not-found"
+  status = 404
+
+# For client-side routing support
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
