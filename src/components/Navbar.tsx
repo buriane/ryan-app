@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Calendar, Menu, X, Home, UserPlus } from 'lucide-react';
+import Image from 'next/image';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,8 +41,20 @@ const Navbar = () => {
         { icon: Calendar, name: 'Jadwal Dokter', path: '/jadwal' },
     ];
 
+    // Fixed isActive function
     const isActive = (path: string) => {
-        return pathname === path;
+        console.log('Current pathname:', pathname);
+        console.log('Checking path:', path);
+        
+        if (path === '/') {
+            const isHomeActive = pathname === '/';
+            console.log('Is home active:', isHomeActive);
+            return isHomeActive;
+        }
+        
+        const isPathActive = pathname.startsWith(path);
+        console.log('Is path active:', isPathActive);
+        return isPathActive;
     };
 
     return (
@@ -50,11 +63,9 @@ const Navbar = () => {
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 pointer-events-auto z-10 transition-all duration-500 delay-100">
                 <Link href="/" className={`flex items-center space-x-2 p-3 rounded-xl transition-all duration-300 ${isScrolled ? 'bg-white/85 shadow-lg backdrop-blur-md' : 'bg-transparent'
                     }`}>
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-lg shadow-md flex items-center justify-center">
-                        <Calendar className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="text-lg font-bold bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 bg-clip-text text-transparent">
-                        Jadwal Dokter
+                    <Image src="/logo.png" alt="Dentiland Logo" width={32} height={32} />
+                    <span className="text-lg font-bold bg-gradient-to-r from-[#01406A] to-[#46C5B3] bg-clip-text text-transparent">
+                        Dentiland
                     </span>
                 </Link>
             </div>
@@ -64,13 +75,14 @@ const Navbar = () => {
                 <nav className={`hidden md:flex items-center px-5 py-2.5 space-x-2 rounded-full transition-all duration-300 ${isScrolled ? 'bg-white/85 shadow-lg backdrop-blur-md' : 'bg-transparent'
                     }`}>
                     {navItems.map((item) => {
+                        const itemIsActive = isActive(item.path);
                         return (
                             <Link
                                 key={item.path}
                                 href={item.path}
-                                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-full transition-colors ${isActive(item.path)
-                                    ? 'text-blue-600 bg-blue-50'
-                                    : 'text-gray-600 hover:text-blue-600'
+                                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-full transition-colors ${itemIsActive
+                                    ? 'text-[#01406A] bg-gradient-to-r from-[#46C5B3]/20 to-[#01406A]/20 border border-[#46C5B3]/30'
+                                    : 'text-gray-600 hover:text-[#01406A] hover:bg-[#46C5B3]/10'
                                     }`}
                             >
                                 <item.icon className="h-4 w-4" />
@@ -90,8 +102,8 @@ const Navbar = () => {
                         <Link
                             href="/daftar"
                             className={`px-4 py-1.5 text-sm rounded-full font-medium transition-all duration-300 ${isActive('/daftar')
-                                ? 'bg-blue-700 text-white shadow-md'
-                                : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg'
+                                ? 'bg-gradient-to-r from-[#01406A] to-[#46C5B3] text-white shadow-md'
+                                : 'bg-gradient-to-r from-[#01406A] to-[#46C5B3] hover:from-[#01406A]/90 hover:to-[#46C5B3]/90 text-white shadow-md hover:shadow-lg'
                                 }`}
                         >
                             <div className="flex items-center space-x-1">
@@ -107,7 +119,7 @@ const Navbar = () => {
                     }`}>
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="text-gray-600 hover:text-blue-600 flex items-center justify-center"
+                        className="text-gray-600 hover:text-[#01406A] flex items-center justify-center"
                         style={{ border: 'none', backgroundColor: 'transparent', padding: '0.5rem' }}
                     >
                         {isMenuOpen ? (
@@ -124,13 +136,14 @@ const Navbar = () => {
                 <div className="absolute top-20 right-4 w-64 md:hidden pt-4 pb-4 px-4 bg-white/90 shadow-lg rounded-xl backdrop-blur-md pointer-events-auto z-50">
                     <div className="space-y-2">
                         {navItems.map((item) => {
+                            const itemIsActive = isActive(item.path);
                             return (
                                 <Link
                                     key={item.path}
                                     href={item.path}
-                                    className={`flex items-center space-x-3 px-3 py-3 text-base font-medium rounded-full ${isActive(item.path)
-                                        ? 'text-blue-600 bg-blue-50'
-                                        : 'text-gray-600'
+                                    className={`flex items-center space-x-3 px-3 py-3 text-base font-medium rounded-full ${itemIsActive
+                                        ? 'text-[#01406A] bg-gradient-to-r from-[#46C5B3]/20 to-[#01406A]/20 border border-[#46C5B3]/30'
+                                        : 'text-gray-600 hover:text-[#01406A] hover:bg-[#46C5B3]/10'
                                         }`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
@@ -146,8 +159,8 @@ const Navbar = () => {
                         <Link
                             href="/daftar"
                             className={`w-full flex items-center justify-center space-x-2 px-4 py-3 text-sm rounded-full font-medium transition-colors ${isActive('/daftar')
-                                ? 'bg-blue-700 text-white'
-                                : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                ? 'bg-gradient-to-r from-[#01406A] to-[#46C5B3] text-white'
+                                : 'bg-gradient-to-r from-[#01406A] to-[#46C5B3] hover:from-[#01406A]/90 hover:to-[#46C5B3]/90 text-white'
                                 }`}
                             onClick={() => setIsMenuOpen(false)}
                         >

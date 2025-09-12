@@ -71,7 +71,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                             initial={{ width: "0%" }}
                             animate={{ width: "100%" }}
                             transition={{ delay: 0.2, duration: 0.5 }}
-                            className="absolute top-0 left-0 h-2 bg-green-500"
+                            className="absolute top-0 left-0 h-2 bg-teal-500"
                         ></motion.div>
                         <motion.button
                             whileHover={{ scale: 1.1 }}
@@ -99,7 +99,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     delay: 0.4,
                                     duration: 0.8
                                 }}
-                                className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-500 mb-4"
+                                className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-teal-100 text-teal-500 mb-4"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -137,7 +137,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     className="col-span-2"
                                 >
                                     <p className="text-sm text-gray-500">Nomor Antrian</p>
-                                    <p className="text-lg font-bold text-blue-600">{lastPendaftaran.nomorAntrian}</p>
+                                    <p className="text-lg font-bold text-sky-800">{lastPendaftaran.nomorAntrian}</p>
                                 </motion.div>
 
                                 <motion.div
@@ -204,7 +204,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={onClose}
-                            className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md"
+                            className="w-full py-2 px-4 bg-sky-800 hover:bg-sky-900 text-white font-medium rounded-md"
                         >
                             Kembali ke Beranda
                         </motion.button>

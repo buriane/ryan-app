@@ -38,7 +38,7 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                         {availabilityText}
                     </motion.span>
                 </div>
-                <p className="text-blue-600 font-medium mb-3">{jadwal.spesialisasi}</p>
+                <p className="text-sky-800 font-medium mb-3">{jadwal.spesialisasi}</p>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                     <div className="text-sm">
                         <p className="text-gray-500">Hari/Tanggal</p>
@@ -56,14 +56,14 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                            className={`h-2 rounded-full ${availabilityPercentage > 50 ? 'bg-green-500' : availabilityPercentage > 25 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                            className={`h-2 rounded-full ${availabilityPercentage > 50 ? 'bg-teal-500' : availabilityPercentage > 25 ? 'bg-yellow-500' : 'bg-red-500'}`}
                             style={{ width: `${availabilityPercentage}%` }}
                         ></div>
                     </div>
                 </div>
                 <Link
                     href={`/daftar?jadwalId=${jadwal.id}`}
-                    className={`block w-full py-2 px-4 text-center rounded-md text-white font-medium ${isAvailable ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'}`}
+                    className={`block w-full py-2 px-4 text-center rounded-md text-white font-medium ${isAvailable ? 'bg-sky-800 hover:bg-sky-900' : 'bg-gray-400 cursor-not-allowed'}`}
                     aria-disabled={!isAvailable}
                 >
                     {isAvailable ? 'Daftar Sekarang' : 'Kuota Penuh'}

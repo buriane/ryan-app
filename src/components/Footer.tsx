@@ -1,8 +1,9 @@
 "use client";
 
 import Link from 'next/link';
-import { Calendar, Phone, Mail, MapPin, Clock, Users } from 'lucide-react';
+import { Calendar, Phone, Mail, MapPin, Home, Clock, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Footer = () => {
     return (
@@ -11,7 +12,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="mt-16 border-t-2 rounded-lg border-blue-200 bg-blue-600 m-4 pt-12 pb-20"
+            className="mt-16 border-t-2 rounded-lg border-white bg-gradient-to-br from-teal-700 to-sky-900 m-4 pt-12 pb-20"
         >
             <motion.div
                 initial={{ opacity: 0 }}
@@ -44,10 +45,10 @@ const Footer = () => {
                                 transition={{ type: "spring" }}
                                 className="w-12 h-12 bg-gradient-to-br from-white to-blue-100 rounded-lg shadow-md flex items-center justify-center transition-all duration-300"
                             >
-                                <Calendar className="w-6 h-6 text-blue-600" />
+                                <Image src="/logo.png" alt="Dentiland Logo" width={32} height={32} />
                             </motion.div>
                             <span className="text-xl font-bold text-white">
-                                Jadwal Dokter
+                                Dentiland
                             </span>
                         </motion.div>
                         <motion.p
@@ -61,15 +62,21 @@ const Footer = () => {
                         </motion.p>
                     </motion.div>
 
-                    {/* Fitur */}
+                    {/* Navigasi */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
-                        <h3 className="font-semibold mb-4 text-white">Fitur</h3>
+                        <h3 className="font-semibold mb-4 text-white">Navigasi</h3>
                         <ul className="space-y-2 text-sm">
+                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
+                                <Link href="/" className="text-blue-100 hover:text-white transition-colors flex items-center space-x-2">
+                                    <Home className="w-4 h-4" />
+                                    <span>Beranda</span>
+                                </Link>
+                            </motion.li>
                             <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
                                 <Link href="/jadwal" className="text-blue-100 hover:text-white transition-colors flex items-center space-x-2">
                                     <Calendar className="w-4 h-4" />
@@ -80,44 +87,6 @@ const Footer = () => {
                                 <Link href="/daftar" className="text-blue-100 hover:text-white transition-colors flex items-center space-x-2">
                                     <Users className="w-4 h-4" />
                                     <span>Pendaftaran</span>
-                                </Link>
-                            </motion.li>
-                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
-                                <Link href="/" className="text-blue-100 hover:text-white transition-colors flex items-center space-x-2">
-                                    <Clock className="w-4 h-4" />
-                                    <span>Antrian Online</span>
-                                </Link>
-                            </motion.li>
-                        </ul>
-                    </motion.div>
-
-                    {/* Informasi */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                    >
-                        <h3 className="font-semibold mb-4 text-white">Informasi</h3>
-                        <ul className="space-y-2 text-sm">
-                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
-                                <Link href="#" className="text-blue-100 hover:text-white transition-colors">
-                                    Tentang Kami
-                                </Link>
-                            </motion.li>
-                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
-                                <Link href="#" className="text-blue-100 hover:text-white transition-colors">
-                                    Tim Medis
-                                </Link>
-                            </motion.li>
-                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
-                                <Link href="#" className="text-blue-100 hover:text-white transition-colors">
-                                    Fasilitas
-                                </Link>
-                            </motion.li>
-                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
-                                <Link href="#" className="text-blue-100 hover:text-white transition-colors">
-                                    Layanan
                                 </Link>
                             </motion.li>
                         </ul>
@@ -138,7 +107,7 @@ const Footer = () => {
                                 className="flex items-center space-x-3 text-blue-100"
                             >
                                 <Phone className="w-4 h-4 flex-shrink-0" />
-                                <span>(021) 1234-5678</span>
+                                <span>(0281) 1234-5678</span>
                             </motion.li>
                             <motion.li
                                 whileHover={{ x: 5 }}
@@ -146,7 +115,7 @@ const Footer = () => {
                                 className="flex items-center space-x-3 text-blue-100"
                             >
                                 <Mail className="w-4 h-4 flex-shrink-0" />
-                                <span>info@jadwaldokter.com</span>
+                                <span>info@dentiland.com</span>
                             </motion.li>
                             <motion.li
                                 whileHover={{ x: 5 }}
@@ -154,7 +123,7 @@ const Footer = () => {
                                 className="flex items-start space-x-3 text-blue-100"
                             >
                                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                                <span>Jl. Kesehatan No. 123<br />Jakarta Pusat, 10110</span>
+                                <span>Jl. Kesehatan No. 123<br />Purwokerto, 53123</span>
                             </motion.li>
                             <motion.li
                                 whileHover={{ x: 5 }}
@@ -181,7 +150,7 @@ const Footer = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.9 }}
                     >
-                        &copy; 2024 Jadwal Dokter App. Semua hak dilindungi.
+                        &copy; 2024 Dentiland App. Semua hak dilindungi.
                         <br className="sm:hidden" />
                         <span className="hidden sm:inline"> | </span>
                         Sistem ini membantu mempermudah akses layanan kesehatan.

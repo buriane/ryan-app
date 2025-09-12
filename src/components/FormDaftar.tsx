@@ -118,7 +118,7 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                         name="namaPasien"
                         value={formData.namaPasien}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.namaPasien ? 'border-red-500' : 'border-gray-300'}`}
+                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-sky-800 ${errors.namaPasien ? 'border-red-500' : 'border-gray-300'}`}
                         placeholder="Masukkan nama lengkap pasien"
                     />
                     {errors.namaPasien && (
@@ -136,7 +136,7 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                         name="telepon"
                         value={formData.telepon}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.telepon ? 'border-red-500' : 'border-gray-300'}`}
+                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-sky-800 ${errors.telepon ? 'border-red-500' : 'border-gray-300'}`}
                         placeholder="Contoh: 08123456789"
                     />
                     {errors.telepon && (
@@ -153,7 +153,7 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                         name="jadwalId"
                         value={formData.jadwalId}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.jadwalId ? 'border-red-500' : 'border-gray-300'}`}
+                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-sky-800 ${errors.jadwalId ? 'border-red-500' : 'border-gray-300'}`}
                     >
                         <option value="0">-- Pilih Jadwal Dokter --</option>
                         {availableJadwal.map(jadwal => (
@@ -176,7 +176,7 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                     className={`w-full py-2 px-4 rounded-md text-white font-medium 
             ${loading || availableJadwal.length === 0
                             ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-blue-600 hover:bg-blue-700'}`}
+                            : 'bg-sky-800 hover:bg-sky-900'}`}
                 >
                     {loading ? 'Memproses...' : 'Daftar Sekarang'}
                 </button>

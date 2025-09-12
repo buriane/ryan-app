@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative bg-blue-600 text-white rounded-xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 opacity-90"></div>
+      <section className="relative bg-sky-400 text-white rounded-xl overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-700 to-sky-900 opacity-90"></div>
         <div className="relative container mx-auto px-4 sm:px-6 py-12 md:py-16 flex flex-col md:flex-row items-center">
           <motion.div
             initial={{ x: -100, opacity: 0 }}
@@ -40,12 +40,12 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/jadwal" className="block bg-white text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-blue-50 transition-colors text-center">
+                <Link href="/jadwal" className="block bg-white text-sky-800 px-6 py-3 rounded-md font-semibold transition-colors text-center">
                   Lihat Jadwal Dokter
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/daftar" className="block bg-blue-500 text-white border border-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors text-center">
+                <Link href="/daftar" className="block bg-teal-600 text-white border border-white px-6 py-3 rounded-md font-semibold transition-colors text-center">
                   Daftar Sekarang
                 </Link>
               </motion.div>
@@ -63,19 +63,14 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="w-full h-64 sm:h-72 md:h-80 relative mx-4 sm:mx-0 sm:max-w-md"
             >
-              <div className="absolute inset-0 bg-white rounded-lg shadow-xl overflow-hidden">
-                {/* Medical animation */}
-                <div className="h-full w-full bg-white flex items-center justify-center">
-                  <LottiePlayer
-                    src="https://assets3.lottiefiles.com/packages/lf20_QU0V6MuXdA.json"
-                    style={{ width: '100%', height: '100%', minHeight: '250px' }}
-                    background="transparent"
-                    speed="1"
-                    loop
-                    autoplay
-                  />
-                </div>
-              </div>
+              <LottiePlayer
+                src="https://assets3.lottiefiles.com/packages/lf20_QU0V6MuXdA.json"
+                style={{ width: '100%', height: '100%', minHeight: '250px' }}
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+              />
             </motion.div>
           </motion.div>
         </div>
@@ -128,7 +123,7 @@ export default function Home() {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4"
+              className="w-12 h-12 bg-sky-100 text-teal-500 rounded-full flex items-center justify-center mb-4"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -151,7 +146,7 @@ export default function Home() {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4"
+              className="w-12 h-12 bg-sky-100 text-teal-500 rounded-full flex items-center justify-center mb-4"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -174,7 +169,7 @@ export default function Home() {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4"
+              className="w-12 h-12 bg-sky-100 text-teal-500 rounded-full flex items-center justify-center mb-4"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -222,7 +217,7 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/jadwal" className="block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors">
+            <Link href="/jadwal" className="block bg-teal-600 text-white px-6 py-3 rounded-md font-semibold transition-colors">
               Lihat Jadwal Dokter
             </Link>
           </motion.div>
