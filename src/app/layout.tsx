@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aplikasi Jadwal Dokter",
-  description: "Aplikasi sederhana untuk jadwal dokter dan pendaftaran pasien",
+  title: "Dentiland - Jadwal Dokter & Pendaftaran Pasien",
+  description: "Dentiland - Sistem informasi jadwal dokter dan pendaftaran pasien yang mudah dan terpercaya.",
 };
 
 export default function RootLayout({
