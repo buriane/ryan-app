@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/context/AppContext';
 import { formatDateIndonesian } from '@/utils/formatters';
 import { JadwalDokter } from '@/types';
+import Image from 'next/image';
 
 interface ModalKonfirmasiProps {
     isOpen: boolean;
@@ -162,10 +163,19 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.2 }}
-                                    className="col-span-2"
+                                    className="col-span-2 flex flex-col items-center"
                                 >
+                                    <div className="w-20 h-20 relative rounded-full overflow-hidden border-2 border-sky-800 mb-2">
+                                        <Image
+                                            src={jadwalDetail.profileImg || "/profile.webp"}
+                                            alt={jadwalDetail.nama}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 80px"
+                                            className="object-cover"
+                                        />
+                                    </div>
                                     <p className="text-sm text-gray-500">Dokter</p>
-                                    <p className="font-medium">{jadwalDetail.nama} - {jadwalDetail.spesialisasi}</p>
+                                    <p className="font-medium text-center">{jadwalDetail.nama} - {jadwalDetail.spesialisasi}</p>
                                 </motion.div>
 
                                 <motion.div

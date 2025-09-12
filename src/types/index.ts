@@ -9,6 +9,7 @@ export interface JadwalDokter {
     jamSelesai: string;
     kuotaTotal: number;
     kuotaTersisa: number;
+    profileImg?: string; // Optional field for profile image path
 }
 
 // Types for patient registration

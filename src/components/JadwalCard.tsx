@@ -2,6 +2,7 @@
 
 import { JadwalDokter } from '@/types';
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatDateIndonesian } from '../utils/formatters';
 import { motion } from 'framer-motion';
 
@@ -25,20 +26,39 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                 duration: 0.2,
                 ease: "easeInOut"
             }}
-            className="bg-white rounded-lg overflow-hidden shadow-md"
+            className="bg-white rounded-lg overflow-hidden shadow-md flex flex-col"
         >
-            <motion.div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl font-bold text-gray-800">{jadwal.nama}</h3>
-                    <motion.span
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        className={`text-xs font-bold px-2 py-1 rounded-full ${availabilityClass}`}
+            <div className="relative">
+                <div className="w-full h-36 bg-gradient-to-r from-sky-100 to-sky-50 flex justify-center items-center overflow-hidden">
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-lg"
                     >
-                        {availabilityText}
-                    </motion.span>
+                        <Image
+                            src={jadwal.profileImg || "/profile.webp"}
+                            alt={`Dr. ${jadwal.nama}`}
+                            fill
+                            sizes="112px"
+                            style={{ objectFit: 'cover' }}
+                            priority
+                        />
+                    </motion.div>
                 </div>
-                <p className="text-sky-800 font-medium mb-3">{jadwal.spesialisasi}</p>
+                <motion.span
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    className={`absolute top-3 right-3 text-xs font-bold px-2 py-1 rounded-full ${availabilityClass}`}
+                >
+                    {availabilityText}
+                </motion.span>
+            </div>
+            <motion.div className="p-6">
+                <div className="text-center mb-3">
+                    <h3 className="text-xl font-bold text-gray-800">{jadwal.nama}</h3>
+                    <p className="text-sky-800 font-medium">{jadwal.spesialisasi}</p>
+                </div>
                 <div className="grid grid-cols-2 gap-2 mb-4">
                     <div className="text-sm">
                         <p className="text-gray-500">Hari/Tanggal</p>
@@ -63,7 +83,7 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                 </div>
                 <Link
                     href={`/daftar?jadwalId=${jadwal.id}`}
-                    className={`block w-full py-2 px-4 text-center rounded-md text-white font-medium ${isAvailable ? 'bg-sky-800 hover:bg-sky-900' : 'bg-gray-400 cursor-not-allowed'}`}
+                    className={`block w-full py-3 px-4 text-center rounded-md text-white font-medium transition-colors ${isAvailable ? 'bg-sky-700 hover:bg-sky-800' : 'bg-gray-400 cursor-not-allowed'}`}
                     aria-disabled={!isAvailable}
                 >
                     {isAvailable ? 'Daftar Sekarang' : 'Kuota Penuh'}

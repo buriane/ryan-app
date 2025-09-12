@@ -3,74 +3,231 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import LottiePlayer from "@/components/LottiePlayer";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative bg-sky-400 text-white rounded-xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-700 to-sky-900 opacity-90"></div>
-        <div className="relative container mx-auto px-4 sm:px-6 py-12 md:py-16 flex flex-col md:flex-row items-center">
+      <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-sky-800 to-teal-700 text-white overflow-hidden rounded-2xl">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-sky-300/15 rounded-full blur-2xl animate-bounce delay-500"></div>
+        </div>
+
+        {/* Floating Medical Icons */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-20 right-1/4 w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center"
+          >
+            ⚕️
+          </motion.div>
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-1/4 right-10 w-10 h-10 bg-sky-300/25 rounded-full flex items-center justify-center"
+          >
+            🦷
+          </motion.div>
+        </div>
+
+        <div className="relative container mx-auto px-4 sm:px-6 py-16 md:py-24 min-h-screen flex flex-col md:flex-row items-center justify-center">
+          {/* Left Content */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-4xl md:text-5xl font-bold mb-4"
+            {/* Logo and Brand Name with Glass Effect */}
+            <motion.div
+              initial={{ opacity: 0, y: -30, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2, type: "spring", bounce: 0.3 }}
+              className="flex items-center gap-4 mb-8 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl w-fit"
             >
-              Layanan Pendaftaran Dokter Online
+              <motion.div
+                whileHover={{
+                  rotate: [0, -10, 10, 0],
+                  scale: 1.1
+                }}
+                transition={{ type: "spring", bounce: 0.6 }}
+                className="w-16 h-16 bg-gradient-to-br from-white via-blue-50 to-sky-100 rounded-2xl shadow-xl flex items-center justify-center transition-all duration-300 border-2 border-white/30"
+              >
+                <Image src="/logo.png" alt="Dentiland Logo" width={40} height={40} className="drop-shadow-sm" />
+              </motion.div>
+              <div className="flex flex-col">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-lg md:text-xl font-bold text-white tracking-wide"
+                >
+                  Dentiland
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="text-sm text-sky-100 font-medium"
+                >
+                  Healthcare Excellence
+                </motion.span>
+              </div>
+            </motion.div>
+
+            {/* Main Heading with Gradient Text */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
+            >
+              <span className="bg-gradient-to-r from-white via-sky-100 to-teal-200 bg-clip-text text-transparent">
+                Layanan
+              </span>
+              <br />
+              <span className="text-white">
+                Pendaftaran
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-teal-200 via-sky-100 to-white bg-clip-text text-transparent">
+                Dokter Online
+              </span>
             </motion.h1>
-            <motion.p
+
+            {/* Enhanced Description */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-lg mb-8"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mb-10"
             >
-              Daftar konsultasi dengan dokter secara mudah, cepat dan efisien tanpa perlu antri lama
-            </motion.p>
+              <p className="text-md md:text-lg text-sky-100 font-light leading-relaxed mb-4">
+                Daftar konsultasi dengan dokter secara mudah, cepat dan efisien tanpa perlu antri lama
+              </p>
+              <div className="flex items-center gap-6 text-white/80">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium">24/7 Available</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+                  <span className="text-sm font-medium">Certified Doctors</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-700"></div>
+                  <span className="text-sm font-medium">Secure Platform</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Enhanced CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-6"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/jadwal" className="block bg-white text-sky-800 px-6 py-3 rounded-md font-semibold transition-colors text-center">
-                  Lihat Jadwal Dokter
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group"
+              >
+                <Link href="/jadwal" className="relative block bg-white text-sky-900 px-8 py-4 rounded-2xl font-bold text-md transition-all duration-300 text-center shadow-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-sky-400 to-teal-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center justify-center gap-2">
+                    <span>Lihat Jadwal Dokter</span>
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </div>
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/daftar" className="block bg-teal-600 text-white border border-white px-6 py-3 rounded-md font-semibold transition-colors text-center">
-                  Daftar Sekarang
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group"
+              >
+                <Link href="/daftar" className="relative block bg-gradient-to-r from-teal-500 to-sky-600 text-white border-2 border-white/30 px-8 py-4 rounded-2xl font-bold text-md transition-all duration-300 text-center shadow-2xl overflow-hidden backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center justify-center gap-2">
+                    <span>Daftar Sekarang</span>
+                    <motion.div
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    ></motion.div>
+                  </div>
                 </Link>
               </motion.div>
             </motion.div>
           </motion.div>
+
+          {/* Right Content - Enhanced Animation */}
           <motion.div
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="w-full md:w-1/2 flex justify-center"
+            initial={{ x: 100, opacity: 0, scale: 0.8 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            className="w-full md:w-1/2 flex justify-center relative"
           >
+            {/* Decorative Elements */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-white/10 to-teal-300/20 rounded-3xl blur-2xl"></div>
+            <div className="absolute inset-8 border border-white/20 rounded-3xl"></div>
+
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="w-full h-64 sm:h-72 md:h-80 relative mx-4 sm:mx-0 sm:max-w-md"
+              initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{
+                duration: 1,
+                delay: 0.8,
+                type: "spring",
+                bounce: 0.4
+              }}
+              className="relative w-full h-80 sm:h-96 md:h-[500px] max-w-lg"
             >
-              <LottiePlayer
-                src="https://assets3.lottiefiles.com/packages/lf20_QU0V6MuXdA.json"
-                style={{ width: '100%', height: '100%', minHeight: '250px' }}
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-              />
+              <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                  rotate: [0, 2, -2, 0]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="w-full h-full bg-white/5 backdrop-blur-md rounded-3xl p-4 shadow-2xl border border-white/10"
+              >
+                <LottiePlayer
+                  src="https://assets3.lottiefiles.com/packages/lf20_QU0V6MuXdA.json"
+                  style={{ width: '100%', height: '100%', minHeight: '300px' }}
+                  background="transparent"
+                  speed="1"
+                  loop
+                  autoplay
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
@@ -217,7 +374,7 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/jadwal" className="block bg-teal-600 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+            <Link href="/jadwal" className="block bg-sky-800 hover:bg-sky-900 text-white px-6 py-3 rounded-md font-semibold transition-colors">
               Lihat Jadwal Dokter
             </Link>
           </motion.div>

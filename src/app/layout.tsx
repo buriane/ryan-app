@@ -41,7 +41,7 @@ export default function RootLayout({
       >
         <AppProvider>
           <Navbar />
-          <div className="container mx-auto px-4 py-8 lg:pt-32 pt-24">
+          <div className="container mx-auto px-4 py-8 pt-24">
             {children}
           </div>
         </AppProvider>

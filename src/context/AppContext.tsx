@@ -9,55 +9,60 @@ const JADWAL_DOKTER_DATA: JadwalDokter[] = [
     {
         id: 1,
         nama: "Dr. Ahmad Santoso",
-        spesialisasi: "Dokter Umum",
+        spesialisasi: "Dokter Gigi Umum",
         hari: "Senin",
         tanggal: "2024-01-15",
         jamMulai: "08:00",
         jamSelesai: "12:00",
         kuotaTotal: 20,
-        kuotaTersisa: 20
+        kuotaTersisa: 20,
+        profileImg: "/profile.webp"
     },
     {
         id: 2,
         nama: "Dr. Sari Indrawati",
-        spesialisasi: "Dokter Anak",
+        spesialisasi: "Dokter Gigi Anak",
         hari: "Selasa",
         tanggal: "2024-01-16",
         jamMulai: "09:00",
         jamSelesai: "13:00",
         kuotaTotal: 15,
-        kuotaTersisa: 15
+        kuotaTersisa: 15,
+        profileImg: "/profile1.webp"
     },
     {
         id: 3,
         nama: "Dr. Budi Prasetyo",
-        spesialisasi: "Dokter Gigi",
+        spesialisasi: "Spesialis Ortodonti",
         hari: "Rabu",
         tanggal: "2024-01-17",
         jamMulai: "13:00",
         jamSelesai: "17:00",
         kuotaTotal: 12,
-        kuotaTersisa: 12
+        kuotaTersisa: 12,
+        profileImg: "/profile2.webp"
     },
     {
         id: 4,
         nama: "Dr. Maya Wijaya",
-        spesialisasi: "Dokter Kulit",
+        spesialisasi: "Spesialis Prostodonti",
         hari: "Kamis",
         tanggal: "2024-01-18",
         jamMulai: "10:00",
         jamSelesai: "14:00",
         kuotaTotal: 10,
-        kuotaTersisa: 10
+        kuotaTersisa: 10,
+        profileImg: "/profil3.webp"
     },
     {
         id: 5,
         nama: "Dr. Rini Susanti",
-        spesialisasi: "Dokter Mata",
+        spesialisasi: "Spesialis Periodonti",
         hari: "Jumat",
         tanggal: "2024-01-19",
         jamMulai: "08:00",
         jamSelesai: "12:00",
+        profileImg: "/profil4.webp",
         kuotaTotal: 15,
         kuotaTersisa: 15
     }

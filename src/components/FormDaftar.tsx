@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { FormError, FormInput } from '@/types';
 import { formatDateIndonesian } from '@/utils/formatters';
+import Image from 'next/image';
 
 interface FormDaftarProps {
     preselectedJadwalId?: number;
@@ -20,13 +21,15 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
     });
 
     const [errors, setErrors] = useState<FormError>({});
+    const [selectedDoctor, setSelectedDoctor] = useState(jadwalDokter.find(j => j.id === preselectedJadwalId));
 
     // Update jadwalId when preselectedJadwalId changes
     useEffect(() => {
         if (preselectedJadwalId) {
             setFormData(prev => ({ ...prev, jadwalId: preselectedJadwalId }));
+            setSelectedDoctor(jadwalDokter.find(j => j.id === preselectedJadwalId));
         }
-    }, [preselectedJadwalId]);
+    }, [preselectedJadwalId, jadwalDokter]);
 
     // Available jadwal for dropdown (only show jadwal with remaining kuota)
     const availableJadwal = jadwalDokter.filter(jadwal => jadwal.kuotaTersisa > 0);
@@ -70,6 +73,11 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
         const newValue = name === 'jadwalId' ? parseInt(value, 10) : value;
 
         setFormData(prev => ({ ...prev, [name]: newValue }));
+
+        // If jadwalId changed, update the selected doctor
+        if (name === 'jadwalId' && typeof newValue === 'number') {
+            setSelectedDoctor(jadwalDokter.find(j => j.id === newValue));
+        }
 
         // Clear error for this field
         if (errors[name as keyof FormError]) {
@@ -164,6 +172,27 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                     </select>
                     {errors.jadwalId && (
                         <p className="mt-1 text-sm text-red-600">{errors.jadwalId}</p>
+                    )}
+
+                    {/* Doctor Photo Preview */}
+                    {selectedDoctor && (
+                        <div className="mt-4 p-4 bg-sky-50 rounded-lg flex items-center space-x-4 border border-sky-100">
+                            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md">
+                                <Image
+                                    src={selectedDoctor.profileImg || "/profile.webp"}
+                                    alt={selectedDoctor.nama}
+                                    fill
+                                    sizes="64px"
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div>
+                                <h4 className="font-medium text-sky-900">{selectedDoctor.nama}</h4>
+                                <p className="text-sm text-sky-700">{selectedDoctor.spesialisasi}</p>
+                                <p className="text-xs text-gray-500 mt-1">{selectedDoctor.hari}, {formatDateIndonesian(selectedDoctor.tanggal)}</p>
+                                <p className="text-xs text-gray-500">{selectedDoctor.jamMulai} - {selectedDoctor.jamSelesai}</p>
+                            </div>
+                        </div>
                     )}
                     {availableJadwal.length === 0 && (
                         <p className="mt-1 text-sm text-amber-600">Tidak ada jadwal dokter yang tersedia saat ini.</p>
