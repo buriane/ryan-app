@@ -135,7 +135,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.9 }}
-                                    className="col-span-2"
+                                    className="col-span-2 text-center"
                                 >
                                     <p className="text-sm text-gray-500">Nomor Antrian</p>
                                     <p className="text-lg font-bold text-sky-800">{lastPendaftaran.nomorAntrian}</p>
@@ -145,6 +145,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.0 }}
+                                    className="text-center"
                                 >
                                     <p className="text-sm text-gray-500">Nama Pasien</p>
                                     <p className="font-medium">{lastPendaftaran.namaPasien}</p>
@@ -154,6 +155,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.1 }}
+                                    className="text-center"
                                 >
                                     <p className="text-sm text-gray-500">Nomor Telepon</p>
                                     <p className="font-medium">{lastPendaftaran.telepon}</p>
@@ -182,6 +184,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.3 }}
+                                    className="text-center"
                                 >
                                     <p className="text-sm text-gray-500">Tanggal</p>
                                     <p className="font-medium">{jadwalDetail.hari}, {formatDateIndonesian(jadwalDetail.tanggal)}</p>
@@ -191,6 +194,7 @@ const ModalKonfirmasi = ({ isOpen, onClose }: ModalKonfirmasiProps) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.4 }}
+                                    className="text-center"
                                 >
                                     <p className="text-sm text-gray-500">Jam Praktik</p>
                                     <p className="font-medium">{jadwalDetail.jamMulai} - {jadwalDetail.jamSelesai}</p>
