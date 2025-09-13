@@ -192,7 +192,7 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                                 <p className="text-xs text-gray-500 mt-1">
                                     {selectedDoctor.hari !== "-" && selectedDoctor.tanggal
                                         ? `${selectedDoctor.hari}, ${formatDateIndonesian(selectedDoctor.tanggal)}`
-                                        : "Tidak ada jadwal"}
+                                        : "Setiap Hari"}
                                 </p>
                                 <p className="text-xs text-gray-500">{selectedDoctor.jamMulai} - {selectedDoctor.jamSelesai}</p>
                             </div>

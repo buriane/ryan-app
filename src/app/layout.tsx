@@ -5,6 +5,7 @@ import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AppWrapper from "@/components/AppWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,12 +41,14 @@ export default function RootLayout({
         style={{ fontFamily: 'var(--font-geist-sans)' }}
       >
         <AppProvider>
-          <Navbar />
-          <div className="container mx-auto px-4 py-8 pt-24">
-            {children}
-          </div>
+          <AppWrapper>
+            <Navbar />
+            <div className="container mx-auto px-4 py-8 pt-24">
+              {children}
+            </div>
+            <Footer />
+          </AppWrapper>
         </AppProvider>
-        <Footer />
       </body>
     </html>
   );

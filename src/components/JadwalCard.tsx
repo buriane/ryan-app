@@ -11,6 +11,7 @@ interface JadwalCardProps {
 }
 
 const JadwalCard = ({ jadwal }: JadwalCardProps) => {
+    const hasNoSchedule = jadwal.hari === "-" && jadwal.tanggal === "-";
     const isAvailable = jadwal.kuotaTersisa > 0;
     const availabilityText = isAvailable ? 'TERSEDIA' : 'PENUH';
     const availabilityClass = isAvailable ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
@@ -46,13 +47,15 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                         />
                     </motion.div>
                 </div>
-                <motion.span
-                    initial={{ scale: 0.8 }}
-                    animate={{ scale: 1 }}
-                    className={`absolute top-3 right-3 text-xs font-bold px-2 py-1 rounded-full ${availabilityClass}`}
-                >
-                    {availabilityText}
-                </motion.span>
+                {!hasNoSchedule && (
+                    <motion.span
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        className={`absolute top-3 right-3 text-xs font-bold px-2 py-1 rounded-full ${availabilityClass}`}
+                    >
+                        {availabilityText}
+                    </motion.span>
+                )}
             </div>
             <motion.div className="p-6">
                 <div className="text-center mb-3">
@@ -69,7 +72,7 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                                 </p>
                             )
                             : (
-                                <p className="font-medium text-gray-800">Tidak ada jadwal</p>
+                                <p className="font-medium text-gray-800">Setiap Hari</p>
                             )}
                     </div>
 
@@ -78,25 +81,33 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                         <p className="font-medium">{jadwal.jamMulai} - {jadwal.jamSelesai}</p>
                     </div>
                 </div>
-                <div className="mb-4">
-                    <div className="flex justify-between mb-1 text-sm">
-                        <span>Kuota</span>
-                        <span>{jadwal.kuotaTersisa} / {jadwal.kuotaTotal}</span>
+                {!hasNoSchedule ? (
+                    <>
+                        <div className="mb-4">
+                            <div className="flex justify-between mb-1 text-sm">
+                                <span>Kuota</span>
+                                <span>{jadwal.kuotaTersisa} / {jadwal.kuotaTotal}</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                <div
+                                    className={`h-2 rounded-full ${availabilityPercentage > 50 ? 'bg-teal-500' : availabilityPercentage > 25 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                                    style={{ width: `${availabilityPercentage}%` }}
+                                ></div>
+                            </div>
+                        </div>
+                        <Link
+                            href={`/daftar?jadwalId=${jadwal.id}`}
+                            className={`block w-full py-3 px-4 text-center rounded-md text-white font-medium transition-colors ${isAvailable ? 'bg-sky-700 hover:bg-sky-800' : 'bg-gray-400 cursor-not-allowed'}`}
+                            aria-disabled={!isAvailable}
+                        >
+                            {isAvailable ? 'Daftar Sekarang' : 'Kuota Penuh'}
+                        </Link>
+                    </>
+                ) : (
+                    <div className="mb-[110px]">
+                        {/* This empty space maintains the same height as cards with quota and registration button */}
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                            className={`h-2 rounded-full ${availabilityPercentage > 50 ? 'bg-teal-500' : availabilityPercentage > 25 ? 'bg-yellow-500' : 'bg-red-500'}`}
-                            style={{ width: `${availabilityPercentage}%` }}
-                        ></div>
-                    </div>
-                </div>
-                <Link
-                    href={`/daftar?jadwalId=${jadwal.id}`}
-                    className={`block w-full py-3 px-4 text-center rounded-md text-white font-medium transition-colors ${isAvailable ? 'bg-sky-700 hover:bg-sky-800' : 'bg-gray-400 cursor-not-allowed'}`}
-                    aria-disabled={!isAvailable}
-                >
-                    {isAvailable ? 'Daftar Sekarang' : 'Kuota Penuh'}
-                </Link>
+                )}
             </motion.div>
         </motion.div>
     );
