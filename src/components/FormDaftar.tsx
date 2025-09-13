@@ -31,8 +31,12 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
         }
     }, [preselectedJadwalId, jadwalDokter]);
 
-    // Available jadwal for dropdown (only show jadwal with remaining kuota)
-    const availableJadwal = jadwalDokter.filter(jadwal => jadwal.kuotaTersisa > 0);
+    // Available jadwal for dropdown (only show jadwal with remaining kuota and valid practice hours)
+    const availableJadwal = jadwalDokter.filter(jadwal =>
+        jadwal.kuotaTersisa > 0 &&
+        jadwal.jamMulai !== "-" &&
+        jadwal.jamSelesai !== "-"
+    );
 
     const validateForm = (): boolean => {
         const newErrors: FormError = {};
