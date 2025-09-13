@@ -11,11 +11,19 @@ interface JadwalCardProps {
 }
 
 const JadwalCard = ({ jadwal }: JadwalCardProps) => {
-    const hasNoSchedule = jadwal.hari === "-" && jadwal.tanggal === "-";
+    const hasNoSchedule = (jadwal.hari === "-" && jadwal.tanggal === "-") || (jadwal.jamMulai === "-" && jadwal.jamSelesai === "-");
     const isAvailable = jadwal.kuotaTersisa > 0;
     const availabilityText = isAvailable ? 'TERSEDIA' : 'PENUH';
     const availabilityClass = isAvailable ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
     const availabilityPercentage = Math.round((jadwal.kuotaTersisa / jadwal.kuotaTotal) * 100);
+
+    // Handler untuk mencegah klik ketika tidak tersedia
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isAvailable) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
 
     return (
         <motion.div
@@ -47,15 +55,13 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                         />
                     </motion.div>
                 </div>
-                {!hasNoSchedule && (
-                    <motion.span
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        className={`absolute top-3 right-3 text-xs font-bold px-2 py-1 rounded-full ${availabilityClass}`}
-                    >
-                        {availabilityText}
-                    </motion.span>
-                )}
+                <motion.span
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    className={`absolute top-3 right-3 text-xs font-bold px-2 py-1 rounded-full ${availabilityClass}`}
+                >
+                    {availabilityText}
+                </motion.span>
             </div>
             <motion.div className="p-6">
                 <div className="text-center mb-3">
@@ -95,13 +101,22 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                                 ></div>
                             </div>
                         </div>
-                        <Link
-                            href={`/daftar?jadwalId=${jadwal.id}`}
-                            className={`block w-full py-3 px-4 text-center rounded-md text-white font-medium transition-colors ${isAvailable ? 'bg-sky-700 hover:bg-sky-800' : 'bg-gray-400 cursor-not-allowed'}`}
-                            aria-disabled={!isAvailable}
-                        >
-                            {isAvailable ? 'Daftar Sekarang' : 'Kuota Penuh'}
-                        </Link>
+                        {isAvailable ? (
+                            <Link
+                                href={`/daftar?jadwalId=${jadwal.id}`}
+                                className="block w-full py-3 px-4 text-center rounded-md text-white font-medium transition-colors bg-sky-700 hover:bg-sky-800"
+                            >
+                                Daftar Sekarang
+                            </Link>
+                        ) : (
+                            <button
+                                disabled
+                                className="block w-full py-3 px-4 text-center rounded-md text-white font-medium bg-gray-400 cursor-not-allowed"
+                                aria-disabled="true"
+                            >
+                                Kuota Penuh
+                            </button>
+                        )}
                     </>
                 ) : (
                     <div className="mb-[110px]">
