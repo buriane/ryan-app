@@ -127,7 +127,7 @@ const Footer = () => {
                                     className="flex items-center space-x-3"
                                 >
                                     <Instagram className="w-4 h-4 flex-shrink-0" />
-                                    <span>dentiland.id</span>
+                                    <span>@dentiland.id</span>
                                 </a>
                             </motion.li>
 

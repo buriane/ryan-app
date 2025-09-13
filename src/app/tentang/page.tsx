@@ -225,7 +225,7 @@ export default function AboutUsPage() {
             </section>
 
             {/* Contact Section */}
-            <section className="py-16 bg-gradient-to-r from-teal-600 via-sky-600 to-blue-700 relative overflow-hidden rounded-xl mt-20">
+            <section className="py-16 bg-gradient-to-r from-teal-800 via-sky-800 to-blue-900 relative overflow-hidden rounded-xl mt-20">
                 {/* Background Elements */}
                 <div className="absolute inset-0">
                     <div className="absolute top-20 left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
@@ -255,7 +255,7 @@ export default function AboutUsPage() {
                             >
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: 5 }}
-                                    className="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                                    className="w-16 h-16 bg-gradient-to-br from-pink-700 to-purple-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                                 >
                                     <Instagram className="w-8 h-8 text-white" />
                                 </motion.div>
@@ -279,7 +279,7 @@ export default function AboutUsPage() {
                             >
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: -5 }}
-                                    className="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                                    className="w-16 h-16 bg-gradient-to-br from-sky-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                                 >
                                     <MapPin className="w-8 h-8 text-white" />
                                 </motion.div>
@@ -299,7 +299,7 @@ export default function AboutUsPage() {
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: 360 }}
                                     transition={{ duration: 0.6 }}
-                                    className="w-16 h-16 bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                                    className="w-16 h-16 bg-gradient-to-br from-green-600 to-teal-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                                 >
                                     <Clock className="w-8 h-8 text-white" />
                                 </motion.div>

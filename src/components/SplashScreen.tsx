@@ -21,8 +21,8 @@ export default function SplashScreen({ onLoadingComplete }: SplashScreenProps) {
     ];
 
     useEffect(() => {
-        // Force a minimum loading time to ensure the splash screen is visible
-        const minLoadingTime = 3000; // 3 seconds minimum loading time
+        // Reduced loading time to 1.5 seconds maximum
+        const minLoadingTime = 1500; // 1.5 seconds maximum loading time
         const startTime = Date.now();
 
         // Simulate loading progress
@@ -33,16 +33,15 @@ export default function SplashScreen({ onLoadingComplete }: SplashScreenProps) {
             setLoadingProgress(prev => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    // Delay before calling onLoadingComplete to show completion
+                    // Reduced delay before calling onLoadingComplete
                     setTimeout(() => {
                         if (onLoadingComplete) onLoadingComplete();
-                    }, 1000);
+                    }, 300); // Reduced from 1000ms to 300ms
                     return 100;
                 }
 
-                // Calculate progress based on elapsed time, ensuring it doesn't complete too quickly
-                // Start slow, then accelerate
-                const timeBasedIncrement = progressScale * (Math.random() * 6 + 2);
+                // Faster progress calculation
+                const timeBasedIncrement = progressScale * (Math.random() * 8 + 4); // Increased increment speed
                 const newProgress = prev + timeBasedIncrement;
 
                 // Update current step based on progress
@@ -51,7 +50,7 @@ export default function SplashScreen({ onLoadingComplete }: SplashScreenProps) {
 
                 return Math.min(newProgress, 100);
             });
-        }, 200);
+        }, 150); // Reduced interval from 200ms to 150ms for faster updates
 
         return () => clearInterval(interval);
     }, [onLoadingComplete, loadingSteps.length]);
