@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Calendar, Phone, Mail, MapPin, Home, Clock, Users } from 'lucide-react';
+import { Calendar, Phone, Instagram, MapPin, Home, Clock, Users, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -89,6 +89,12 @@ const Footer = () => {
                                     <span>Pendaftaran</span>
                                 </Link>
                             </motion.li>
+                            <motion.li whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
+                                <Link href="/tentang" className="text-blue-100 hover:text-white transition-colors flex items-center space-x-2">
+                                    <Info className="w-4 h-4" />
+                                    <span>Tentang Kami</span>
+                                </Link>
+                            </motion.li>
                         </ul>
                     </motion.div>
 
@@ -114,16 +120,24 @@ const Footer = () => {
                                 transition={{ type: "spring", stiffness: 400 }}
                                 className="flex items-center space-x-3 text-blue-100"
                             >
-                                <Mail className="w-4 h-4 flex-shrink-0" />
-                                <span>info@dentiland.com</span>
+                                <a
+                                    href="https://www.instagram.com/dentiland.id?igsh=aGdmaTh5MDkxeW81"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-3"
+                                >
+                                    <Instagram className="w-4 h-4 flex-shrink-0" />
+                                    <span>dentiland.id</span>
+                                </a>
                             </motion.li>
+
                             <motion.li
                                 whileHover={{ x: 5 }}
                                 transition={{ type: "spring", stiffness: 400 }}
                                 className="flex items-start space-x-3 text-blue-100"
                             >
                                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                                <span>Jl. Kesehatan No. 123<br />Purwokerto, 53123</span>
+                                <span>Ruko Mega Kuningan<br />PIK 2</span>
                             </motion.li>
                             <motion.li
                                 whileHover={{ x: 5 }}
@@ -131,7 +145,7 @@ const Footer = () => {
                                 className="flex items-center space-x-3 text-blue-100"
                             >
                                 <Clock className="w-4 h-4 flex-shrink-0" />
-                                <span>Sen-Jum: 08:00-17:00</span>
+                                <span>Selasa - Minggu: 08:00-20:00</span>
                             </motion.li>
                         </ul>
                     </motion.div>

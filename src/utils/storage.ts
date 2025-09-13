@@ -70,3 +70,28 @@ export const getJadwalWithUpdates = (jadwalList: JadwalDokter[]): JadwalDokter[]
             : jadwal;
     });
 };
+
+export function getTanggalMingguIni(hari: string): string {
+    const hariMap: Record<string, number> = {
+        "Minggu": 0,
+        "Senin": 1,
+        "Selasa": 2,
+        "Rabu": 3,
+        "Kamis": 4,
+        "Jumat": 5,
+        "Sabtu": 6,
+    };
+
+    const today = new Date();
+    const currentDay = today.getDay(); // 0 = Minggu
+    const targetDay = hariMap[hari];
+
+    let diff = targetDay - currentDay;
+    if (diff < 0) diff += 7; // kalau sudah lewat → minggu depan
+
+    const targetDate = new Date(today);
+    targetDate.setDate(today.getDate() + diff);
+
+    return targetDate.toISOString().split("T")[0]; // YYYY-MM-DD
+}
+

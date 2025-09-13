@@ -189,7 +189,11 @@ const FormDaftar = ({ preselectedJadwalId, onSuccess }: FormDaftarProps) => {
                             <div>
                                 <h4 className="font-medium text-sky-900">{selectedDoctor.nama}</h4>
                                 <p className="text-sm text-sky-700">{selectedDoctor.spesialisasi}</p>
-                                <p className="text-xs text-gray-500 mt-1">{selectedDoctor.hari}, {formatDateIndonesian(selectedDoctor.tanggal)}</p>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    {selectedDoctor.hari !== "-" && selectedDoctor.tanggal
+                                        ? `${selectedDoctor.hari}, ${formatDateIndonesian(selectedDoctor.tanggal)}`
+                                        : "Tidak ada jadwal"}
+                                </p>
                                 <p className="text-xs text-gray-500">{selectedDoctor.jamMulai} - {selectedDoctor.jamSelesai}</p>
                             </div>
                         </div>

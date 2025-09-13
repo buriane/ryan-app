@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Calendar, Menu, X, Home, UserPlus } from 'lucide-react';
+import { Calendar, Menu, X, Home, UserPlus, Info } from 'lucide-react';
 import Image from 'next/image';
 
 const Navbar = () => {
@@ -39,19 +39,20 @@ const Navbar = () => {
     const navItems = [
         { icon: Home, name: 'Beranda', path: '/' },
         { icon: Calendar, name: 'Jadwal Dokter', path: '/jadwal' },
+        { icon: Info, name: 'Tentang Kami', path: '/tentang' },
     ];
 
     // Fixed isActive function
     const isActive = (path: string) => {
         console.log('Current pathname:', pathname);
         console.log('Checking path:', path);
-        
+
         if (path === '/') {
             const isHomeActive = pathname === '/';
             console.log('Is home active:', isHomeActive);
             return isHomeActive;
         }
-        
+
         const isPathActive = pathname.startsWith(path);
         console.log('Is path active:', isPathActive);
         return isPathActive;

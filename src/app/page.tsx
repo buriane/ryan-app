@@ -29,7 +29,7 @@ export default function Home() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-20 right-1/4 w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center"
+            className="absolute top-20 right-10 w-8 h-8 bg-white/70 rounded-lg flex items-center justify-center"
           >
             ⚕️
           </motion.div>
@@ -43,7 +43,7 @@ export default function Home() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-1/4 right-10 w-10 h-10 bg-sky-300/25 rounded-full flex items-center justify-center"
+            className="absolute top-1/4 right-10 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"
           >
             🦷
           </motion.div>
@@ -89,7 +89,7 @@ export default function Home() {
                   transition={{ delay: 0.7 }}
                   className="text-sm text-sky-100 font-medium"
                 >
-                  Healthcare Excellence
+                  Kids Dental Clinic
                 </motion.span>
               </div>
             </motion.div>
@@ -102,15 +102,15 @@ export default function Home() {
               className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
             >
               <span className="bg-gradient-to-r from-white via-sky-100 to-teal-200 bg-clip-text text-transparent">
-                Layanan
+                The Kingdom of
               </span>
               <br />
               <span className="text-white">
-                Pendaftaran
+                Beautiful
               </span>
               <br />
               <span className="bg-gradient-to-r from-teal-200 via-sky-100 to-white bg-clip-text text-transparent">
-                Dokter Online
+                Smile
               </span>
             </motion.h1>
 

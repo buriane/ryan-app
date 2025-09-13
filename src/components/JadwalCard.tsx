@@ -62,8 +62,17 @@ const JadwalCard = ({ jadwal }: JadwalCardProps) => {
                 <div className="grid grid-cols-2 gap-2 mb-4">
                     <div className="text-sm">
                         <p className="text-gray-500">Hari/Tanggal</p>
-                        <p className="font-medium">{jadwal.hari}, {formatDateIndonesian(jadwal.tanggal)}</p>
+                        {jadwal.hari !== "-" && jadwal.tanggal
+                            ? (
+                                <p className="font-medium">
+                                    {jadwal.hari}, {formatDateIndonesian(jadwal.tanggal)}
+                                </p>
+                            )
+                            : (
+                                <p className="font-medium text-gray-800">Tidak ada jadwal</p>
+                            )}
                     </div>
+
                     <div className="text-sm">
                         <p className="text-gray-500">Jam Praktik</p>
                         <p className="font-medium">{jadwal.jamMulai} - {jadwal.jamSelesai}</p>
