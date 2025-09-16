@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Calendar, Menu, X, Home, UserPlus, Info } from 'lucide-react';
+import { Calendar, Menu, X, Home, UserPlus, Info, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 
 const Navbar = () => {
@@ -39,6 +39,7 @@ const Navbar = () => {
     const navItems = [
         { icon: Home, name: 'Beranda', path: '/' },
         { icon: Calendar, name: 'Jadwal Dokter', path: '/jadwal' },
+        { icon: MessageCircle, name: 'Konsultasi Dokter', path: '/konsultasi' },
         { icon: Info, name: 'Tentang Kami', path: '/tentang' },
     ];
 
