@@ -268,7 +268,7 @@ export default function Home() {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -296,7 +296,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.1)" }}
             className="bg-white p-6 rounded-lg shadow-md"
           >
@@ -319,7 +319,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.1)" }}
             className="bg-white p-6 rounded-lg shadow-md"
           >
@@ -335,6 +335,29 @@ export default function Home() {
             <h3 className="text-xl font-bold text-gray-800 mb-2">Pendaftaran Mudah</h3>
             <p className="text-gray-600">
               Proses pendaftaran yang sederhana dan cepat, cukup isi data diri dan pilih jadwal yang diinginkan
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.1)" }}
+            className="bg-white p-6 rounded-lg shadow-md"
+          >
+            <motion.div
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="w-12 h-12 bg-sky-100 text-teal-500 rounded-full flex items-center justify-center mb-4"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </motion.div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Konsultasi Online</h3>
+            <p className="text-gray-600">
+              Chat langsung dengan dokter untuk konsultasi online yang praktis dan mudah diakses kapan saja
             </p>
           </motion.div>
         </div>
@@ -355,7 +378,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-2xl font-bold text-gray-800 mb-4"
         >
-          Siap untuk mendaftar?
+          Siap untuk mendaftar atau berkonsultasi?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -364,7 +387,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-gray-600 max-w-2xl mx-auto mb-8"
         >
-          Lihat jadwal dokter yang tersedia dan daftar konsultasi sekarang juga
+          Lihat jadwal dokter yang tersedia, daftar konsultasi, atau mulai chat online dengan dokter sekarang juga
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -378,8 +401,13 @@ export default function Home() {
               Lihat Jadwal Dokter
             </Link>
           </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/konsultasi" className="block bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+              Konsultasi Dokter
+            </Link>
+          </motion.div>
         </motion.div>
-      </motion.section>
-    </div>
+    </motion.section>
+    </div >
   );
 }

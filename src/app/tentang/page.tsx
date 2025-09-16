@@ -317,25 +317,47 @@ export default function AboutUsPage() {
                             transition={{ duration: 0.6, delay: 0.8 }}
                             className="mt-16"
                         >
-                            <motion.div
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                <Link
-                                    href="/jadwal"
-                                    className="inline-block bg-white text-teal-700 px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:bg-sky-50 transition-all duration-300"
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <motion.div
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
-                                    <div className="flex items-center gap-2">
-                                        <span>Buat Janji Konsultasi</span>
-                                        <motion.span
-                                            animate={{ x: [0, 5, 0] }}
-                                            transition={{ duration: 1.5, repeat: Infinity }}
-                                        >
-                                            →
-                                        </motion.span>
-                                    </div>
-                                </Link>
-                            </motion.div>
+                                    <Link
+                                        href="/jadwal"
+                                        className="inline-block bg-white text-teal-700 px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:bg-sky-50 transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span>Buat Janji Konsultasi</span>
+                                            <motion.span
+                                                animate={{ x: [0, 5, 0] }}
+                                                transition={{ duration: 1.5, repeat: Infinity }}
+                                            >
+                                                →
+                                            </motion.span>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+
+                                <motion.div
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <Link
+                                        href="/konsultasi"
+                                        className="inline-block bg-teal-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:bg-teal-700 transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span>Konsultasi Dokter</span>
+                                            <motion.span
+                                                animate={{ scale: [1, 1.1, 1] }}
+                                                transition={{ duration: 2, repeat: Infinity }}
+                                            >
+                                                💬
+                                            </motion.span>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            </div>
                         </motion.div>
                     </motion.div>
                 </div>
