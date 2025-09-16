@@ -97,7 +97,7 @@ export default function JadwalPage() {
                 className="mb-8"
             >
                 <div className="bg-white p-4 rounded-lg shadow-md">
-                    <div className="grid grid-cols-1 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         {/* Doctor Name Search */}
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -110,6 +110,24 @@ export default function JadwalPage() {
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="block w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500"
                             />
+                        </div>
+
+                        {/* Day Filter */}
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Calendar className="h-5 w-5 text-gray-400" />
+                            </div>
+                            <select
+                                value={selectedDay}
+                                onChange={(e) => setSelectedDay(e.target.value)}
+                                className="block w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500 bg-white"
+                            >
+                                {daysOfWeek.map((day) => (
+                                    <option key={day} value={day}>
+                                        {day === "Semua" ? "Semua Hari" : day}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
 

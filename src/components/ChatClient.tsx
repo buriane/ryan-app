@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
@@ -157,8 +157,8 @@ export default function ChatClient({ doctorId }: ChatClientProps) {
                     >
                         <div
                             className={`max-w-[75%] p-3 rounded-lg ${message.isUser
-                                    ? 'bg-sky-600 text-white rounded-tr-none'
-                                    : 'bg-white text-gray-800 shadow-sm rounded-tl-none'
+                                ? 'bg-sky-600 text-white rounded-tr-none'
+                                : 'bg-white text-gray-800 shadow-sm rounded-tl-none'
                                 }`}
                         >
                             <p>{message.text}</p>

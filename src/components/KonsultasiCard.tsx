@@ -5,19 +5,47 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MessageSquare, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { formatDateIndonesian } from '@/utils/formatters';
 
 interface KonsultasiCardProps {
     dokter: JadwalDokter;
 }
 
+// Function to generate consistent status based on doctor name
+const getDoctorStatus = (doctorName: string) => {
+    // Create a simple hash from the doctor name
+    let hash = 0;
+    for (let i = 0; i < doctorName.length; i++) {
+        const char = doctorName.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+
+    // Use the hash to determine if doctor is online (70% chance)
+    const isOnline = Math.abs(hash) % 10 < 7;
+    return isOnline;
+};
+
+// Function to generate consistent rating based on doctor name
+const getDoctorRating = (doctorName: string) => {
+    let hash = 0;
+    for (let i = 0; i < doctorName.length; i++) {
+        const char = doctorName.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    // Generate rating between 4.0 and 5.0
+    const rating = 4 + (Math.abs(hash) % 100) / 100;
+    return rating.toFixed(1);
+};
+
 const KonsultasiCard = ({ dokter }: KonsultasiCardProps) => {
-    // Generate random status for demonstration purposes
-    const isOnline = Math.random() > 0.3; // 70% chance to be online
+    // Generate consistent status and rating based on doctor name
+    const isOnline = getDoctorStatus(dokter.nama);
     const statusClass = isOnline ? 'bg-green-500' : 'bg-gray-400';
     const statusText = isOnline ? 'Online' : 'Offline';
-
-    // Random rating between 4.0 and 5.0
-    const rating = (4 + Math.random()).toFixed(1);
+    const rating = getDoctorRating(dokter.nama);
 
     return (
         <motion.div
@@ -64,6 +92,26 @@ const KonsultasiCard = ({ dokter }: KonsultasiCardProps) => {
                     <p className="text-sky-800 font-medium">{dokter.spesialisasi}</p>
                 </div>
 
+                <div className="grid grid-cols-2 gap-2 mb-4 text-center">
+                    <div className="text-sm">
+                        <p className="text-gray-500">Hari/Tanggal</p>
+                        {dokter.hari !== "-" && dokter.tanggal
+                            ? (
+                                <p className="font-medium">
+                                    {dokter.hari}, {formatDateIndonesian(dokter.tanggal)}
+                                </p>
+                            )
+                            : (
+                                <p className="font-medium text-gray-800">Setiap Hari</p>
+                            )}
+                    </div>
+
+                    <div className="text-sm">
+                        <p className="text-gray-500">Jam Praktik</p>
+                        <p className="font-medium">{dokter.jamMulai} - {dokter.jamSelesai}</p>
+                    </div>
+                </div>
+
                 <div className="flex justify-center items-center mb-4">
                     <div className="flex items-center text-amber-500">
                         <Star size={16} fill="currentColor" />
@@ -71,12 +119,6 @@ const KonsultasiCard = ({ dokter }: KonsultasiCardProps) => {
                     </div>
                     <div className="w-1 h-1 rounded-full bg-gray-300 mx-2"></div>
                     <div className="text-gray-500 text-sm">10+ konsultasi</div>
-                </div>
-
-                <div className="mb-6">
-                    <div className="text-sm text-gray-600 text-center">
-                        Dokter spesialis dengan pengalaman lebih dari 5 tahun menangani berbagai kasus kedokteran gigi.
-                    </div>
                 </div>
 
                 <Link
