@@ -21,12 +21,12 @@ const getDoctorStatus = (doctorName: string) => {
         hash = hash & hash; // Convert to 32bit integer
     }
 
-    // Use the hash to determine if doctor is online (70% chance)
-    const isOnline = Math.abs(hash) % 10 < 7;
+    // Use the hash to determine if doctor is online (90% chance)
+    const isOnline = Math.abs(hash) % 10 < 9;
     return isOnline;
 };
 
-// Function to generate consistent rating based on doctor name
+// Function to generate consistent rating based on doctor name (4.8-4.9)
 const getDoctorRating = (doctorName: string) => {
     let hash = 0;
     for (let i = 0; i < doctorName.length; i++) {
@@ -35,8 +35,8 @@ const getDoctorRating = (doctorName: string) => {
         hash = hash & hash;
     }
 
-    // Generate rating between 4.0 and 5.0
-    const rating = 4 + (Math.abs(hash) % 100) / 100;
+    // Generate rating between 4.8 and 4.9
+    const rating = 4.8 + (Math.abs(hash) % 10) / 100;
     return rating.toFixed(1);
 };
 
