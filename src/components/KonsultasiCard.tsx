@@ -92,7 +92,7 @@ const KonsultasiCard = ({ dokter }: KonsultasiCardProps) => {
                     <p className="text-sky-800 font-medium">{dokter.spesialisasi}</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 mb-4 text-center">
+                {/* <div className="grid grid-cols-2 gap-2 mb-4 text-center">
                     <div className="text-sm">
                         <p className="text-gray-500">Hari/Tanggal</p>
                         {dokter.hari !== "-" && dokter.tanggal
@@ -110,7 +110,7 @@ const KonsultasiCard = ({ dokter }: KonsultasiCardProps) => {
                         <p className="text-gray-500">Jam Praktik</p>
                         <p className="font-medium">{dokter.jamMulai} - {dokter.jamSelesai}</p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="flex justify-center items-center mb-4">
                     <div className="flex items-center text-amber-500">

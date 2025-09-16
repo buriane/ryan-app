@@ -5,58 +5,23 @@ import KonsultasiCard from "@/components/KonsultasiCard";
 import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
 import { Search, Calendar, RefreshCw, Check } from "lucide-react";
+import { getOneSchedulePerDoctor } from "@/utils/doctorFilter";
 
 export default function JadwalPage() {
-    const { jadwalDokter, resetKuota } = useAppContext();
+    const { jadwalDokter } = useAppContext();
 
-    // Filter states
+    // Add search filter state
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedDay, setSelectedDay] = useState("Semua");
 
-    // Reset kuota states
-    const [isResetting, setIsResetting] = useState(false);
-    const [resetSuccess, setResetSuccess] = useState(false);
+    // Get one schedule per doctor (1 doctor = 1 schedule)
+    const uniqueDoctors = useMemo(() => getOneSchedulePerDoctor(jadwalDokter), [jadwalDokter]);
 
-    // Days of the week in Indonesia
-    const daysOfWeek = ["Semua", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
-
-    // Handle reset kuota
-    const handleResetKuota = async () => {
-        setIsResetting(true);
-
-        try {
-            const success = await resetKuota();
-            if (success) {
-                setResetSuccess(true);
-                setTimeout(() => setResetSuccess(false), 3000);
-            }
-        } catch (error) {
-            console.error("Failed to reset kuota", error);
-        } finally {
-            setIsResetting(false);
-        }
-    };    // Filter jadwal based on search and day
-
-    // Filter jadwal based on search query and selected day
-    const filteredJadwal = useMemo(() => {
-        return jadwalDokter.filter(jadwal => {
-            // Filter by doctor name
-            const nameMatch = jadwal.nama.toLowerCase().includes(searchQuery.toLowerCase());
-
-            // Filter by day
-            let dayMatch = true;
-            if (selectedDay !== "Semua") {
-                // Special handling for Dr. Ryan who should appear on all days
-                if (jadwal.hari === "-") {
-                    dayMatch = true;  // Show Dr. Ryan on all days
-                } else {
-                    dayMatch = jadwal.hari === selectedDay;
-                }
-            }
-
-            return nameMatch && dayMatch;
-        });
-    }, [jadwalDokter, searchQuery, selectedDay]);
+    // Filter doctors by name
+    const filteredDoctors = useMemo(() => {
+        return uniqueDoctors.filter(doctor =>
+            doctor.nama.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }, [uniqueDoctors, searchQuery]);
 
     return (
         <motion.div
@@ -97,37 +62,18 @@ export default function JadwalPage() {
                 className="mb-8"
             >
                 <div className="bg-white p-4 rounded-lg shadow-md">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        {/* Doctor Name Search */}
+                    <div className="mb-4">
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <Search className="h-5 w-5 text-gray-400" />
                             </div>
                             <input
                                 type="text"
-                                placeholder="Cari dokter..."
+                                placeholder="Cari nama dokter..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="block w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500"
                             />
-                        </div>
-
-                        {/* Day Filter */}
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Calendar className="h-5 w-5 text-gray-400" />
-                            </div>
-                            <select
-                                value={selectedDay}
-                                onChange={(e) => setSelectedDay(e.target.value)}
-                                className="block w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-sky-500 focus:border-sky-500 bg-white"
-                            >
-                                {daysOfWeek.map((day) => (
-                                    <option key={day} value={day}>
-                                        {day === "Semua" ? "Semua Hari" : day}
-                                    </option>
-                                ))}
-                            </select>
                         </div>
                     </div>
 
@@ -176,7 +122,7 @@ export default function JadwalPage() {
                 transition={{ duration: 0.5, delay: 0.5 }}
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredJadwal.map((jadwal, index) => (
+                    {filteredDoctors.map((jadwal, index) => (
                         <motion.div
                             key={jadwal.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -188,14 +134,18 @@ export default function JadwalPage() {
                     ))}
                 </div>
 
-                {filteredJadwal.length === 0 && (
+                {filteredDoctors.length === 0 && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
                         className="text-center py-12"
                     >
-                        <p className="text-gray-500">Tidak ada dokter yang sesuai dengan filter</p>
+                        <p className="text-gray-500">
+                            {uniqueDoctors.length === 0
+                                ? "Tidak ada dokter tersedia saat ini"
+                                : "Tidak ada dokter yang sesuai dengan pencarian"}
+                        </p>
                     </motion.div>
                 )}
             </motion.section>
