@@ -170,10 +170,10 @@ export default function Home() {
                 whileTap={{ scale: 0.98 }}
                 className="group"
               >
-                <Link href="/daftar" className="relative block bg-gradient-to-r from-teal-500 to-sky-600 text-white border-2 border-white/30 px-8 py-4 rounded-2xl font-bold text-md transition-all duration-300 text-center shadow-2xl overflow-hidden backdrop-blur-sm">
+                <Link href="/konsultasi" className="relative block bg-gradient-to-r from-teal-500 to-sky-600 text-white border-2 border-white/30 px-8 py-4 rounded-2xl font-bold text-md transition-all duration-300 text-center shadow-2xl overflow-hidden backdrop-blur-sm">
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                   <div className="relative flex items-center justify-center gap-2">
-                    <span>Daftar Sekarang</span>
+                    <span>Konsultasi Sekarang</span>
                     <motion.div
                       animate={{ rotate: [0, 360] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
